@@ -20,7 +20,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 first_window = Tk()
-first_window.overrideredirect(True)
+#first_window.overrideredirect(True)
 first_window.geometry("480x320")
 first_window.configure(bg="#FFFFFF")
 
@@ -73,7 +73,7 @@ canvas.create_text(
     180.0,
     133.0,
     anchor="nw",
-   text="IN GATE",
+   text="OUT GATE",
    fill="#000000",
     font=("Inter Bold", 35 * -1)
 )

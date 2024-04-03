@@ -114,7 +114,7 @@ def fetch_data_and_show_second_window(rfid_value):
         # Make the API call with the RFID value
         print("Before API call")
         response = requests.get(
-            f"https://api-dot-mahindrauni2.el.r.appspot.com/outpass/gateinout/1/{rfid_value}")
+            f"https://api-dot-mahindrauni2.el.r.appspot.com/outpass/gateinout/2/{rfid_value}")
         print("Called API")
         
         if response.status_code == 200:
@@ -138,7 +138,7 @@ def show_second_window(data):
     # id_screen(first_window, data, image_path)
 
     window = tk.Toplevel(first_window)
-    window.overrideredirect(True)
+    #window.overrideredirect(True)
     window.geometry("480x320")
     window.configure(bg="#FFFFFF")
     window.attributes('-alpha',)
@@ -271,7 +271,7 @@ def show_second_window(data):
         16.0,
         16.0,
         anchor="nw",
-        text="D-1     IN GATE ",
+        text="D-2     OUT GATE ",
         fill="#000000",
         font=("Inter Bold", 20 * -1, "bold")
     )
