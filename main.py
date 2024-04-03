@@ -35,10 +35,10 @@ def buzz_no():
         pass  # Handle keyboard interrupt if needed
 
 
-def buzzer_yes():
+def buzzer_yes(s):
     try:
         buzzer.on()  # Turn the buzzer on
-        sleep(0.1)     # Beep for 1 second (adjust the duration as needed)
+        sleep(s)     # Beep for 1 second (adjust the duration as needed)
     finally:
         buzzer.off()
 
@@ -52,7 +52,7 @@ def on_connect(tag):
     print(f'UID: {uid}')
     global scan_id
     scan_id = uid
-    buzzer_yes()
+    buzzer_yes(0.1)
     return True  # Set the flag to exit the loop
 
 
@@ -60,9 +60,9 @@ def read_rfid():
     # Placeholder function, replace with actual code to read RFID reader output
     # For demonstration, return a sample RFID valu
     # Use 'tty:AMA0' or other port based on your configuration
-    clf = nfc.ContactlessFrontend('tty:AMA0')
+    clf = nfc.ContactlessFrontend('tty:S0')
     print("before read")
-    buzzer_yes()
+    #buzzer_yes(0.2)
     try:
         card_read = False  # Flag to indicate whether a card has been read
 
@@ -122,11 +122,12 @@ def fetch_data_and_show_second_window(rfid_value):
             show_second_window(response.json())
         else:
             print("Failed to fetch data from the API")
+            first_window.after(1000, handle_rfid_output)
 
     except Exception as e:
         print("Error fetching data:", e)
         first_window.after(1000, handle_rfid_output)
-        buzzer_yes()
+        buzzer_yes(0.2)
 # Function to show the second window
 
 
@@ -208,7 +209,7 @@ def show_second_window(data):
         anchor="nw",
         text=data["NAME"],
         fill="#000000",
-        font=("Inter Bold", 16 * -1, "bold")
+        font=("Inter Bold", 20 * -1, "bold")
     )
 
     id_text = canvas.create_text(
@@ -286,8 +287,10 @@ def show_second_window(data):
     image_label = Label(window)
     image_label.place(x=260, y= 9)
     htno = data["HTNO"] 
+    a = htno[2]
+    b = htno[3]
     photo = get_image_from_url(
-        "https://musecportal.s3.ap-south-1.amazonaws.com/2023/" + data["HTNO"].lower() + ".jpg", 200, 260)
+        "https://musecportal.s3.ap-south-1.amazonaws.com/20"+ a + b+ "/" + data["HTNO"].lower() + ".jpg", 200, 260)
     print(photo)
     current_image = photo
     image_label.configure(image=current_image)

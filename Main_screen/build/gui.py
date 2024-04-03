@@ -62,20 +62,20 @@ image_3 = canvas.create_image(
 
 canvas.create_text(
     81.0,
-    160.0,
+    170.0,
     anchor="nw",
     text="Please scan your ID card",
     fill="#000000",
-    font=("Inter Bold", 24 * -1)
+    font=("Inter Bold", 26 * -1)
 )
 
 canvas.create_text(
-    41.0,
+    180.0,
     133.0,
     anchor="nw",
-    text="Welcome to Mahindra University",
-    fill="#000000",
-    font=("Inter Bold", 24 * -1)
+   text="IN GATE",
+   fill="#000000",
+    font=("Inter Bold", 35 * -1)
 )
 
 image_image_4 = PhotoImage(
